@@ -3,6 +3,7 @@ view: ind_movimientos {
   drill_fields: [id]
 
   dimension: id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -348,8 +349,7 @@ view: ind_movimientos {
   }
 
   dimension: nro_aut {
-    primary_key: yes
-    type: number
+    type: string
     sql: ${TABLE}.NroAut ;;
   }
 
