@@ -10,17 +10,20 @@ datagroup: maquila_default_datagroup {
 
 persist_with: maquila_default_datagroup
 
-explore: maquila {
+explore:cc_movimiento_enc  {
   join: historico_movimientos {
     type: left_outer
-    sql_on: ${maquila.num_cuenta} = ${historico_movimientos.cuenta} ;;
- relationship: many_to_many}
- join: cc_movimiento_enc {
+    sql_on: ${cc_movimiento_enc.id_secuencia} = ${historico_movimientos.autorizacion} ;;
+    relationship: one_to_one
+  }
+  join: maquila {
     type: left_outer
-    sql_on: ${maquila.num_cuenta} = ${cc_movimiento_enc.num_cuenta} ;;
-    relationship: many_to_many}
+    sql_on: ${cc_movimiento_enc.num_cuenta} = ${maquila.num_cuenta} ;;
+    relationship: many_to_one
+  }
   join: ind_movimientos {
     type: left_outer
-    sql_on: ${maquila.num_cuenta} = ${ind_movimientos.nro_ruc} ;;
-    relationship: many_to_many}
+    sql_on: ${cc_movimiento_enc.id_secuencia} = ${ind_movimientos.nro_aut} ;;
+    relationship: many_to_one
+  }
 }
