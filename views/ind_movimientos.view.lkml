@@ -502,4 +502,5 @@ view: ind_movimientos {
     type: count
     drill_fields: [id]
   }
+
 }

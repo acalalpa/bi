@@ -15,6 +15,7 @@ explore: ind_movimientos  {
     type: left_outer
     sql_on: ${ind_movimientos.nro_ruc} = ${maquila.num_cuenta} ;;
     relationship: many_to_one
+
   }
   join: catalogo_cuentas {
     type: left_outer
@@ -31,4 +32,5 @@ explore: ind_movimientos  {
     sql_on: ${clientes_broxel.clasificacion_ctes_broxel} = ${catalogo_clasificacion_clientes.codigo} ;;
     relationship: many_to_many
   }
+  sql_always_where: ${fclear_year} = '2023'  ;;
 }
