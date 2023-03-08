@@ -109,6 +109,7 @@ view: cc_movimiento_enc {
   }
 
   dimension: id_secuencia {
+    primary_key: yes
     type: number
     sql: ${TABLE}.Id_Secuencia ;;
   }
