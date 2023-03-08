@@ -3,13 +3,13 @@ view: historico_movimientos {
   drill_fields: [id]
 
   dimension: id {
-    primary_key: yes
     type: number
     sql: ${TABLE}.Id ;;
   }
 
   dimension: autorizacion {
-    type: string
+    primary_key: yes
+    type: number
     sql: ${TABLE}.Autorizacion ;;
   }
 
