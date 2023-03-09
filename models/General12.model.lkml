@@ -16,11 +16,7 @@ explore: catalogo_cuentas  {
     sql_on: ${catalogo_cuentas.cuenta} = ${ind_movimientos.nro_ruc} ;;
     relationship: one_to_many
   }
-  join: movimientos {
-    type: left_outer
-    sql_on: ${catalogo_cuentas.cuenta} = ${movimientos.Cuenta} ;;
-    relationship: many_to_many
-  }
+
   join: clientes_broxel {
     type: left_outer
     sql_on: ${catalogo_cuentas.cliente} = ${clientes_broxel.clave_cliente} ;;
