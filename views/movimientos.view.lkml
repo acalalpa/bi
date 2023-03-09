@@ -1,11 +1,11 @@
 view: movimientos {
   sql_table_name:
     (
-      SELECT id, NroRuc Cuenta, CONVERT(DATE,Fclear) Fecha
+      SELECT id, NroRuc Cuenta, CONVERT(DATE,Fclear) Fecha,importe_pesos Importe
       FROM broxelco_rdg.ind_movimientos
       WHERE Fclear > EOMONTH(DATEADD(MONTH, -1, GETDATE()))
       UNION ALL
-      SELECT id, NumCuenta Cuenta, CONVERT(DATE,Fecha) Fecha
+      SELECT id, NumCuenta Cuenta, CONVERT(DATE,Fecha) Fecha,ImpTotalDEC Importe
       FROM broxelpaymentsws.PrePayStudioMovements_v
       WHERE Fecha > EOMONTH(DATEADD(MONTH, -1, GETDATE()))
     ) ;;
@@ -32,5 +32,9 @@ dimension_group: Fecha {
     year
   ]
   sql: ${TABLE}.Fecha ;;
+}
+dimension: Importe {
+  type: number
+  sql: ${TABLE}.Importe ;;
 }
 }
