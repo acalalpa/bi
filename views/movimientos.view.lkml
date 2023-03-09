@@ -8,7 +8,7 @@ view: movimientos {
       SELECT id, NumCuenta Cuenta, CONVERT(DATE,Fecha) Fecha
       FROM broxelpaymentsws.PrePayStudioMovements_v
       WHERE Fecha > EOMONTH(DATEADD(MONTH, -1, GETDATE()))
-    ) Combinada ;;
+    ) movimientos ;;
 
   dimension: id {
     type: string
@@ -24,7 +24,6 @@ dimension_group: Fecha {
   type: time
   timeframes: [
     raw,
-    time,
     date,
     week,
     month,
