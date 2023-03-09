@@ -14,7 +14,7 @@ explore: catalogo_cuentas  {
   join: ind_movimientos {
     type: left_outer
     sql_on: ${catalogo_cuentas.cuenta} = ${ind_movimientos.nro_ruc} ;;
-    relationship: many_to_one
+    relationship: one_to_many
 
   }
   join: clientes_broxel {
@@ -25,7 +25,7 @@ explore: catalogo_cuentas  {
   join: maquila {
     type: left_outer
     sql_on: ${catalogo_cuentas.cuenta} = ${maquila.num_cuenta} ;;
-    relationship: many_to_many
+    relationship: many_to_one
   }
   join: catalogo_clasificacion_clientes {
     type: left_outer
