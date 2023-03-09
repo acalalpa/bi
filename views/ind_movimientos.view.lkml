@@ -14,7 +14,6 @@ view: ind_movimientos {
   dimension: nro_ruc {
     type: string
     sql: ${TABLE}.NroRuc ;;
-    label: "NumCuenta"
   }
   dimension_group: fclear {
     type: time
@@ -29,11 +28,9 @@ view: ind_movimientos {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.FClear ;;
-    label: "Fecha"
   }
   dimension: importe_pesos {
     type: number
     sql: ${TABLE}.importe_pesos ;;
-    label: "Importe"
   }
 }
