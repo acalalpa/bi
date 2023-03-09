@@ -1,7 +1,7 @@
 view: movimientos {
   sql_table_name:
     (
-      SELECT id, nro_ruc AS Cuenta, Fclear AS Fecha
+      SELECT id, NroRuc AS Cuenta, Fclear AS Fecha
       FROM broxelco_rdg.ind_movimientos
       UNION ALL
       SELECT id, NumCuenta AS Cuenta, Fecha AS Fecha
