@@ -2,7 +2,7 @@ view: ind_movimientos {
   sql_table_name: (
   SELECT id,nro_ruc,fclear FROM broxelco_rdg.ind_movimientos
   UNION ALL
-  SELECT id,NumCuenta as nro_ruc,Fecha as fclear,'0' as importe_pesos
+  SELECT id,NumCuenta as 'nro_ruc',Fecha as 'fclear',0 as 'importe_pesos'
   FROM pre_pay_studio_movements_v
   );;
   drill_fields: [id]
