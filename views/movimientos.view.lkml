@@ -1,10 +1,10 @@
 view: movimientos {
   sql_table_name:
     (
-      SELECT id, NroRuc AS Cuenta, Fclear AS Fecha
+      SELECT id, NroRuc Cuenta, Fclear Fecha
       FROM broxelco_rdg.ind_movimientos
       UNION ALL
-      SELECT id, NumCuenta AS Cuenta, Fecha AS Fecha
+      SELECT id, NumCuenta Cuenta, Fecha Fecha
       FROM broxelpaymentsws.PrePayStudioMovements_v
     ) Combinada ;;
 
