@@ -1,8 +1,5 @@
 view: ind_movimientos {
-  sql_table_name: (
-  SELECT id,nro_ruc,fclear FROM broxelco_rdg.ind_movimientos
-
-  );;
+  sql_table_name:  broxelco_rdg.ind_movimientos ;;
   drill_fields: [id]
 
   dimension: id {
