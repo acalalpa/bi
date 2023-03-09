@@ -1,11 +1,11 @@
 view: movimientos {
   sql_table_name:
     (
-      SELECT Top(100) id, NroRuc Cuenta, CONVERT(DATE,Fclear) Fecha
+      SELECT id, NroRuc Cuenta, CONVERT(DATE,Fclear) Fecha
       FROM broxelco_rdg.ind_movimientos
       WHERE Fclear > EOMONTH(DATEADD(MONTH, -1, GETDATE()))
       UNION ALL
-      SELECT TOP(100) id, NumCuenta Cuenta, CONVERT(DATE,Fecha) Fecha
+      SELECT id, NumCuenta Cuenta, CONVERT(DATE,Fecha) Fecha
       FROM broxelpaymentsws.PrePayStudioMovements_v
       WHERE Fecha > EOMONTH(DATEADD(MONTH, -1, GETDATE()))
     ) Combinada ;;
