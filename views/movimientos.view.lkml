@@ -1,5 +1,5 @@
 view: movimientos {
-  sql_table_name: |-
+  sql_table_name:
     (
       SELECT id, nro_ruc AS Cuenta, Fclear AS Fecha
       FROM ind_movimientos
