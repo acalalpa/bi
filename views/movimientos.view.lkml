@@ -1,7 +1,7 @@
 view: movimientos {
   sql_table_name:
     (
-      SELECT id, NroRuc Cuenta, CONVERT(DATE,Fclear) Fecha,importe_pesos Importe,CodPtoCuota Producto,DenMov Categoria,COUNT(1) Operaciones,sum (case when CodMont!='484' then (TasaIntercambio*(importe_pesos/ImpTotal)) else TasaIntercambio end) Intercambio
+      SELECT id, NroRuc Cuenta, CONVERT(DATE,Fclear) Fecha,importe_pesos Importe,CodPtoCuota Producto,DenMov Categoria,COUNT(1) Operaciones,case when CodMont!='484' then (TasaIntercambio*(importe_pesos/ImpTotal)) else TasaIntercambio end Intercambio
       FROM broxelco_rdg.ind_movimientos
       WHERE Fclear > EOMONTH(DATEADD(MONTH, -1, GETDATE()))
       UNION ALL
