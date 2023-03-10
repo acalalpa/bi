@@ -9,6 +9,7 @@ view: movimientos {
       FROM broxelpaymentsws.PrePayStudioMovements_v
       WHERE Fecha > EOMONTH(DATEADD(MONTH, -1, GETDATE()))
     ) ;;
+  drill_fields: [Producto]
 
   dimension: id {
     type: string
