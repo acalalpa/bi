@@ -36,7 +36,7 @@ dimension_group: Fecha {
 }
 dimension: Importe {
   type: number
-  sql: SUM(${TABLE}.Importe) ;;
+  sql: ${TABLE}.Importe ;;
 }
 dimension: Producto {
   type: string
@@ -52,6 +52,6 @@ dimension: Operaciones {
 }
 dimension: Intercambio {
   type: number
-  sql: SUM(${TABLE}.Intercambio) ;;
+  sql: ${TABLE}.Intercambio ;;
 }
 }
