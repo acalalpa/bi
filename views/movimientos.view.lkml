@@ -5,7 +5,7 @@ view: movimientos {
       FROM broxelco_rdg.ind_movimientos
       WHERE Fclear > EOMONTH(DATEADD(MONTH, -1, GETDATE()))
       UNION ALL
-      SELECT id, NumCuenta Cuenta, CONVERT(DATE,Fecha) Fecha,ImpTotalDEC Importe,Producto,DenMov Categoria,OUNT(1) Operaciones,ExchangeRateDEC Intercambio
+      SELECT id, NumCuenta Cuenta, CONVERT(DATE,Fecha) Fecha,ImpTotalDEC Importe,Producto,DenMov Categoria,COUNT(1) Operaciones,ExchangeRateDEC Intercambio
       FROM broxelpaymentsws.PrePayStudioMovements_v
       WHERE Fecha > EOMONTH(DATEADD(MONTH, -1, GETDATE()))
     ) ;;
