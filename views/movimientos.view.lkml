@@ -46,7 +46,7 @@ dimension: Producto {
 }
 dimension: Categoria {
   type: string
-  sql: COALESCE(${TABLE}.Categoria, 'C') ;;
+  sql: COALESCE(${TABLE}.Categoria, 'Otros') ;;
 }
 dimension: Operaciones {
   type: number
