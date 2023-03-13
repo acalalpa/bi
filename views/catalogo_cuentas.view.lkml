@@ -326,7 +326,7 @@ view: catalogo_cuentas {
 
   dimension: procesador {
     type: string
-    sql: ${TABLE}.Procesador ;;
+    sql: UPPER(${TABLE}.Procesador) ;;
   }
 
   dimension: producto {
