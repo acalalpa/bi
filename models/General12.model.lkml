@@ -41,4 +41,6 @@ join: cat_procesador {
   sql_on: ${catalogo_cuentas.procesador} = ${cat_procesador.nombre};;
   relationship: many_to_one
 }
+sql_always_where: ${movimientos.Fecha_date} >= EOMONTH(DATEADD(MONTH, -1, GETDATE())) and ${clientes_broxel.clave_cliente} NOT IN ('17BRC02313', '20BRC0208', '17BRC02315', '18BRC00188', '17BRC02314') ;;
+
 }
