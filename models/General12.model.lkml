@@ -29,7 +29,7 @@ join: catalogo_categoria_comercio {
 join: clientes_broxel {
   type: left_outer
   sql_on: ${catalogo_cuentas.cliente} = ${clientes_broxel.clave_cliente} ;;
-  sql_where: ${clientes_broxel.clave_cliente} NOT IN ('17BRC02313', '20BRC0208', '17BRC02315', '18BRC00188', '17BRC02314') ;;
+#  sql_where: ${clientes_broxel.clave_cliente} NOT IN ('17BRC02313', '20BRC0208', '17BRC02315', '18BRC00188', '17BRC02314') ;;
   relationship: one_to_many
 }
 join: catalogo_clasificacion_clientes {
