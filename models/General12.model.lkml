@@ -37,11 +37,11 @@ join: catalogo_clasificacion_clientes {
   sql_on: ${catalogo_clasificacion_clientes.codigo} = ${clientes_broxel.clasificacion_ctes_broxel} ;;
   relationship: many_to_one
 }
-join: cat_procesador {
-  type: left_outer
-  sql_on: ${catalogo_cuentas.procesador} = ${cat_procesador.nombre};;
-  relationship: many_to_one
-}
+#join: cat_procesador {
+#  type: left_outer
+#  sql_on: ${catalogo_cuentas.procesador} = ${cat_procesador.nombre};;
+#  relationship: many_to_one
+#}
 # sql_always_where: ${movimientos.Fecha_date} >= EOMONTH(DATEADD(MONTH, -1, GETDATE()) ;;
 
 }
