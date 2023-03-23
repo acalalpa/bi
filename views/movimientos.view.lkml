@@ -14,6 +14,7 @@ view: movimientos {
   drill_fields: [Producto]
 
   dimension: id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
 }
