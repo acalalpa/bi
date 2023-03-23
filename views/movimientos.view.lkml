@@ -71,7 +71,7 @@ dimension: Intercambio {
          WHEN ${TABLE}.TipReg = 'C' THEN 'POS'
          WHEN ${TABLE}.TipReg = 'D' THEN 'DEVOLUCIONES'
          WHEN ${TABLE}.TipReg = 'R' THEN 'ATM'
-         ELSE 0 -- en caso de que TipReg no sea C, A o B, asigna un valor de 0
+         ELSE 'Otros' -- en caso de que TipReg no sea C, A o B, asigna un valor de 0
        END ;;
   }
 
