@@ -65,37 +65,4 @@ dimension: Intercambio {
     type: string
     sql: ${TABLE}.TipReg ;;
   }
-  dimension: tipo_movimiento {
-    type: string
-    sql: CASE
-         WHEN ${TABLE}.TipoReg = 'C' THEN 'POS'
-         ELSE CASE ${TABLE}.TipoReg
-                WHEN 'D' THEN 'Devoluciones'
-                WHEN 'R' THEN 'ATM'
-                WHEN 'Z' THEN 'Comisiones'
-                WHEN 'S' THEN 'Comisiones'
-                WHEN 'X' THEN 'Devoluciones'
-                WHEN 'Y' THEN 'Otros'
-                WHEN 'I' THEN 'Comisiones'
-                WHEN 'K' THEN 'Devoluciones'
-                WHEN 'L' THEN 'Comisiones'
-                WHEN 'J' THEN 'Devoluciones'
-                WHEN 'M' THEN 'Comisiones'
-                WHEN 'N' THEN 'Comisiones'
-                WHEN 'H' THEN 'Otros'
-                WHEN 'T' THEN 'Otros'
-                WHEN 'O' THEN 'Otros'
-                WHEN 'A' THEN 'Otros'
-                WHEN 'B' THEN 'Comisiones'
-                WHEN 'G' THEN 'Otros'
-                WHEN 'F' THEN 'Devoluciones'
-                WHEN 'Q' THEN 'Comisiones'
-                WHEN 'P' THEN 'No Aplica'
-                WHEN 'U' THEN 'Devoluciones'
-                WHEN 'V' THEN 'No Aplica'
-                WHEN 'W' THEN 'No Aplica'
-              END
-       END ;;
-  }
-
 }
