@@ -65,4 +65,5 @@ dimension: Intercambio {
     type: string
     sql: ${TABLE}.TipReg ;;
   }
+
 }
