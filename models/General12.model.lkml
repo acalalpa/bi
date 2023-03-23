@@ -35,7 +35,7 @@ join: clientes_broxel {
 join: catalogo_clasificacion_clientes {
   type: left_outer
   sql_on: ${catalogo_clasificacion_clientes.codigo} = ${clientes_broxel.clasificacion_ctes_broxel} ;;
-  relationship: many_to_one
+  relationship: one_to_many
 }
 #join: cat_procesador {
 #  type: left_outer
