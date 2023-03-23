@@ -1,15 +1,19 @@
 view: movimientos {
   sql_table_name:
     (
-      SELECT id, NroRuc Cuenta, CONVERT(DATE,Fclear) Fecha,SUM(ImpTotal) Importe,CodPtoCuota Producto,DenMov Categoria,COUNT(1) Operaciones,SUM(case when CodMont!='484' then (TasaIntercambio*(importe_pesos/ImpTotal)) else TasaIntercambio end) Intercambio
+      SELECT --TOP(1000)
+      id, NroRuc Cuenta, CONVERT(DATE,Fclear) Fecha,SUM(ImpTotal) Importe,CodPtoCuota Producto,DenMov Categoria,COUNT(1) Operaciones,SUM(case when CodMont!='484' then (TasaIntercambio*(importe_pesos/ImpTotal)) else TasaIntercambio end) Intercambio
+      ,TipReg as TipReg
       FROM broxelco_rdg.ind_movimientos (NoLock)
       WHERE Fclear > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
-      GROUP BY id,NroRuc,CONVERT(DATE,Fclear),CodPtoCuota,DenMov
+      GROUP BY id,NroRuc,CONVERT(DATE,Fclear),CodPtoCuota,DenMov,TipReg
       UNION ALL
-      SELECT id, NumCuenta Cuenta, CONVERT(DATE,Fecha) Fecha,SUM(ImpTotalDEC) Importe,Producto,DenMov Categoria,COUNT(1) Operaciones,SUM(ExchangeRateDEC) Intercambio
+      SELECT --TOP(1000)
+      id, NumCuenta Cuenta, CONVERT(DATE,Fecha) Fecha,SUM(ImpTotalDEC) Importe,Producto,DenMov Categoria,COUNT(1) Operaciones,SUM(ExchangeRateDEC) Intercambio
+      ,TipoReg AS TipReg
       FROM broxelpaymentsws.PrePayStudioMovements_v (NoLock)
       WHERE Fecha > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
-      GROUP BY id,NumCuenta,CONVERT(DATE,Fecha),Producto,DenMov
+      GROUP BY id,NumCuenta,CONVERT(DATE,Fecha),Producto,DenMov,TipoReg
     ) ;;
   drill_fields: [Producto]
 
@@ -57,4 +61,8 @@ dimension: Intercambio {
   type: number
   sql: ${TABLE}.Intercambio ;;
 }
+  dimension: TipReg {
+    type: string
+    sql: ${TABLE}.TipReg ;;
+  }
 }
