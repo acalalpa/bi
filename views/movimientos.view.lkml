@@ -71,7 +71,29 @@ dimension: Intercambio {
          WHEN ${TABLE}.TipReg = 'C' THEN 'POS'
          WHEN ${TABLE}.TipReg = 'D' THEN 'DEVOLUCIONES'
          WHEN ${TABLE}.TipReg = 'R' THEN 'ATM'
-         ELSE 'Otros' -- en caso de que TipReg no sea C, A o B, asigna un valor de 0
+         WHEN ${TABLE}.TipReg = 'Z' THEN 'COMISIONES'
+         WHEN ${TABLE}.TipReg = 'S' THEN 'COMISIONES'
+         WHEN ${TABLE}.TipReg = 'X' THEN 'DEVOLUCIONES'
+         WHEN ${TABLE}.TipReg = 'Y' THEN 'OTROS'
+         WHEN ${TABLE}.TipReg = 'I' THEN 'COMISIONES'
+         WHEN ${TABLE}.TipReg = 'K' THEN 'DEVOLUCIONES'
+         WHEN ${TABLE}.TipReg = 'L' THEN 'COMISIONES'
+         WHEN ${TABLE}.TipReg = 'J' THEN 'DEVOLUCIONES'
+         WHEN ${TABLE}.TipReg = 'M' THEN 'COMISIONES'
+         WHEN ${TABLE}.TipReg = 'N' THEN 'COMISIONES'
+         WHEN ${TABLE}.TipReg = 'H' THEN 'OTROS'
+         WHEN ${TABLE}.TipReg = 'T' THEN 'OTROS'
+         WHEN ${TABLE}.TipReg = 'O' THEN 'OTROS'
+         WHEN ${TABLE}.TipReg = 'A' THEN 'OTROS'
+         WHEN ${TABLE}.TipReg = 'B' THEN 'COMISIONES'
+         WHEN ${TABLE}.TipReg = 'G' THEN 'OTROS'
+         WHEN ${TABLE}.TipReg = 'F' THEN 'DEVOLUCIONES'
+         WHEN ${TABLE}.TipReg = 'Q' THEN 'COMISIONES'
+         WHEN ${TABLE}.TipReg = 'P' THEN 'NO APLICA'
+         WHEN ${TABLE}.TipReg = 'U' THEN 'DEVOLUCIONES'
+         WHEN ${TABLE}.TipReg = 'V' THEN 'NO APLICA'
+         WHEN ${TABLE}.TipReg = 'W' THEN 'NO APLICA'
+         ELSE 'NO APLICA' -- en caso de que TipReg no sea C, A o B, asigna un valor de 0
        END ;;
   }
 
