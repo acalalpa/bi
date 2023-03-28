@@ -4,6 +4,7 @@ connection: "azuresqlbi"
 include: "/views/**/*.view"
 
 
+
 datagroup: maquila_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   sql_trigger: "SELECT GETUTCDATE() as looker_trigger" # Runs every 6 hours
