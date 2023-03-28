@@ -99,6 +99,4 @@ dimension: Intercambio {
          ELSE ${TABLE}.TipReg -- en caso de que TipReg no sea C, A o B, asigna un valor de 0
        END ;;
   }
-
-
 }
