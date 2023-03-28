@@ -1,7 +1,7 @@
 connection: "azuresqlbi"
 
 # include all the views
-include: "/views/**/*.*"
+include: "/views/**/*.view"
 
 datagroup: maquila_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
