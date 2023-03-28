@@ -2,19 +2,7 @@ connection: "azuresqlbi"
 
 # include all the views
 include: "/views/**/*.view"
-view: personalizada {
-  sql_table_name: catalogo_cuentas ;; # La tabla subyacente que quieres usar en esta vista
-
-  dimension: clase {
-    type: string
-    sql: ${TABLE}.clase ;; # La columna de la tabla subyacente que quieres incluir como dimensión en esta vista
-  }
-
-  measure: count {
-    type: count
-    drill_fields: [catalogo_cuentas.id] # Puedes agregar más campos aquí para permitir que los usuarios perforan en los datos
-  }
-}
+include: "/*.view"
 
 
 datagroup: maquila_default_datagroup {
