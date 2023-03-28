@@ -11,11 +11,42 @@ view: movimientos {
       GROUP BY id,NroRuc,CONVERT(DATE,Fclear),CodPtoCuota,DenMov,TipReg,B.CategoriaTransaccion
       UNION ALL
       SELECT --TOP(1000)
-      id, NumCuenta Cuenta, CONVERT(DATE,Fecha) Fecha,SUM(ImpTotalDEC) Importe,Producto,DenMov Categoria,COUNT(1) Operaciones,SUM(ExchangeRateDEC) Intercambio
-      ,TipoReg AS TipReg
-      FROM broxelpaymentsws.PrePayStudioMovements_v (NoLock)
+      A.id, A.NumCuenta Cuenta, CONVERT(DATE,A.Fecha) Fecha,SUM(A.ImpTotalDEC) Importe,A.Producto,A.DenMov Categoria,COUNT(1) Operaciones,SUM(A.ExchangeRateDEC) Intercambio
+      ,UPPER(CASE
+      WHEN B.idComercio IS NOT NULL AND  A.TipoReg='C' THEN C.Categoria
+               ELSE
+                 CASE A.TipoReg
+            WHEN 'C'      THEN 'POS'
+            WHEN 'D'      THEN 'Devoluciones'
+            WHEN 'R'      THEN 'ATM'
+            WHEN 'Z'      THEN 'Comisiones'
+            WHEN 'S'      THEN 'Comisiones'
+            WHEN 'X'      THEN 'Devoluciones'
+            WHEN 'Y'      THEN 'Otros'
+            WHEN 'I'      THEN 'Comisiones'
+            WHEN 'K'      THEN 'Devoluciones'
+            WHEN 'L'      THEN 'Comisiones'
+            WHEN 'J'      THEN 'Devoluciones'
+            WHEN 'M'        THEN 'Comisiones'
+            WHEN 'N'      THEN 'Comisiones'
+            WHEN 'H'      THEN 'Otros'
+            WHEN 'T'      THEN 'Otros'
+            WHEN 'O'      THEN 'Otros'
+            WHEN 'A'      THEN 'Otros'
+            WHEN 'B'      THEN 'Comisiones'
+            WHEN 'G'      THEN 'Otros'
+            WHEN 'F'      THEN 'Devoluciones'
+            WHEN 'Q'      THEN 'Comisiones'
+            WHEN 'P'      THEN 'No Aplica'
+            WHEN 'U'      THEN 'Devoluciones'
+            WHEN 'V'      THEN 'No Aplica'
+            WHEN 'W'    THEN 'NO APLICA'
+END END)
+      FROM broxelpaymentsws.PrePayStudioMovements_v (NoLock) A
+    LEFT JOIN broxelco_rdg.Comercio (NoLock) B ON A.DenMov = B.Comercio
+    LEFT JOIN broxelco_rdg.CatalogoCategoriaComercio (NoLock) C ON B.Categoria = C.id
       WHERE Fecha > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
-      GROUP BY id,NumCuenta,CONVERT(DATE,Fecha),Producto,DenMov,TipoReg
+      GROUP BY A.id,A.NumCuenta,CONVERT(DATE,A.Fecha),A.Producto,A.DenMov,A.TipoReg,B.idComercio,C.Categoria
     ) ;;
   drill_fields: [Producto]
 
