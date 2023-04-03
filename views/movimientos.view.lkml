@@ -151,4 +151,8 @@ dimension: Intercambio {
     sql: CASE
     WHEN ${TipReg} = 'C' AND ${comercio.id_comercio} IS NOT NULL THEN ${catalogo_categoria_comercio.categoria} ELSE ${Cat} END;;
   }
+  dimension: Semana {
+  type: number
+    sql: :{TABLE}.Semana ;;
+  }
 }
