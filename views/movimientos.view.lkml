@@ -13,8 +13,8 @@ view: movimientos {
   FROM broxelco_rdg.ind_movimientos (NoLock) A
   LEFT JOIN [broxelco_rdg].[CatalogoTipoTransaccion] B
   ON A.CodTransac = B.CodigoTransaccional
-  WHERE YEAR(FClear) = '2023' AND MONTH(FClear) = '2' AND DATEPART(ISOWK,FClear) = '7'
-    --Fclear > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
+  WHERE --YEAR(FClear) = '2023' AND MONTH(FClear) = '2' AND DATEPART(ISOWK,FClear) = '7'
+    Fclear > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
   GROUP BY id,NroRuc,CONVERT(DATE,Fclear),CodPtoCuota,DenMov,TipReg,B.CategoriaTransaccion,DATEPART(ISOWK,FClear)
   UNION ALL
   SELECT --TOP(1000)
@@ -61,8 +61,8 @@ END END)
       FROM broxelpaymentsws.PrePayStudioMovements_v (NoLock) A
     LEFT JOIN broxelco_rdg.Comercio (NoLock) B ON A.DenMov = B.Comercio
     LEFT JOIN broxelco_rdg.CatalogoCategoriaComercio (NoLock) C ON B.Categoria = C.id
-      WHERE YEAR(Fecha) = '2023' AND  MONTH(Fecha) = '2' AND DATEPART(ISOWK,Fecha) = '7'
-    --Fecha > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
+      WHERE --YEAR(Fecha) = '2023' AND  MONTH(Fecha) = '2' AND DATEPART(ISOWK,Fecha) = '7'
+    Fecha > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
       GROUP BY A.id,A.NumCuenta,CONVERT(DATE,A.Fecha),A.Producto,A.DenMov,A.TipoReg,B.idComercio,C.Categoria,DATEPART(ISOWK,Fecha)) ;;
   drill_fields: [Producto]
 
