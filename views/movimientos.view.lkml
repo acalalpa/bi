@@ -2,16 +2,30 @@ view: movimientos {
   sql_table_name:
     (
      SELECT --TOP(1000)
-      A.id,A.NroRuc Cuenta, CONVERT(DATE,A.Fclear) Fecha,SUM(A.ImpTotal) Importe,A.CodPtoCuota Producto,A.DenMov Categoria,COUNT(1) Operaciones,SUM(case when A.CodMont!='484' then (A.TasaIntercambio*(A.importe_pesos/A.ImpTotal)) else A.TasaIntercambio end) Intercambio
-      ,CASE WHEN B.CategoriaTransaccion IS NOT NULL THEN UPPER(B.CategoriaTransaccion) ELSE A.TipReg END TipReg
-      FROM broxelco_rdg.ind_movimientos (NoLock) A
-    LEFT JOIN [broxelco_rdg].[CatalogoTipoTransaccion] B
-    ON A.CodTransac = B.CodigoTransaccional
-      WHERE Fclear > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
-      GROUP BY id,NroRuc,CONVERT(DATE,Fclear),CodPtoCuota,DenMov,TipReg,B.CategoriaTransaccion
-      UNION ALL
-      SELECT --TOP(1000)
-      A.id, A.NumCuenta Cuenta, CONVERT(DATE,A.Fecha) Fecha,SUM(A.ImpTotalDEC) Importe,A.Producto,A.DenMov Categoria,COUNT(1) Operaciones,SUM(A.ExchangeRateDEC) Intercambio
+      A.id,A.NroRuc Cuenta,
+    CONVERT(DATE,A.Fclear) Fecha,
+    SUM(A.ImpTotal) Importe,A.CodPtoCuota Producto,A.DenMov Categoria,
+    COUNT(1) Operaciones,
+    SUM(case when A.CodMont!='484' then (A.TasaIntercambio*(A.importe_pesos/A.ImpTotal)) else A.TasaIntercambio end) Intercambio,
+    CASE WHEN B.CategoriaTransaccion IS NOT NULL THEN UPPER(B.CategoriaTransaccion) ELSE A.TipReg END TipReg,
+    DATEPART(ISOWK,FClear) AS Semana,
+    'Ind_Movimientos' AS Fuente
+  FROM broxelco_rdg.ind_movimientos (NoLock) A
+  LEFT JOIN [broxelco_rdg].[CatalogoTipoTransaccion] B
+  ON A.CodTransac = B.CodigoTransaccional
+  WHERE YEAR(FClear) = '2023' AND MONTH(FClear) = '2' AND DATEPART(ISOWK,FClear) = '7'
+    --Fclear > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
+  GROUP BY id,NroRuc,CONVERT(DATE,Fclear),CodPtoCuota,DenMov,TipReg,B.CategoriaTransaccion,DATEPART(ISOWK,FClear)
+  UNION ALL
+  SELECT --TOP(1000)
+      A.id,
+    A.NumCuenta Cuenta,
+    CONVERT(DATE,A.Fecha) Fecha,
+    SUM(A.ImpTotalDEC) Importe,
+    A.Producto,
+    A.DenMov Categoria,
+    COUNT(1) Operaciones,
+    SUM(A.ExchangeRateDEC) Intercambio
       ,UPPER(CASE
       WHEN B.idComercio IS NOT NULL AND  A.TipoReg='C' THEN C.Categoria
                ELSE
@@ -27,7 +41,7 @@ view: movimientos {
             WHEN 'K'      THEN 'Devoluciones'
             WHEN 'L'      THEN 'Comisiones'
             WHEN 'J'      THEN 'Devoluciones'
-            WHEN 'M'        THEN 'Comisiones'
+            WHEN 'M'      THEN 'Comisiones'
             WHEN 'N'      THEN 'Comisiones'
             WHEN 'H'      THEN 'Otros'
             WHEN 'T'      THEN 'Otros'
@@ -40,14 +54,16 @@ view: movimientos {
             WHEN 'P'      THEN 'No Aplica'
             WHEN 'U'      THEN 'Devoluciones'
             WHEN 'V'      THEN 'No Aplica'
-            WHEN 'W'    THEN 'NO APLICA'
+            WHEN 'W'      THEN 'NO APLICA'
 END END)
+    ,DATEPART(ISOWK,Fecha) AS SEMANA
+    ,'PrePayStudio' AS Fuente
       FROM broxelpaymentsws.PrePayStudioMovements_v (NoLock) A
     LEFT JOIN broxelco_rdg.Comercio (NoLock) B ON A.DenMov = B.Comercio
     LEFT JOIN broxelco_rdg.CatalogoCategoriaComercio (NoLock) C ON B.Categoria = C.id
-      WHERE Fecha > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
-      GROUP BY A.id,A.NumCuenta,CONVERT(DATE,A.Fecha),A.Producto,A.DenMov,A.TipoReg,B.idComercio,C.Categoria
-    ) ;;
+      WHERE YEAR(Fecha) = '2023' AND  MONTH(Fecha) = '2' AND DATEPART(ISOWK,Fecha) = '7'
+    --Fecha > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
+      GROUP BY A.id,A.NumCuenta,CONVERT(DATE,A.Fecha),A.Producto,A.DenMov,A.TipoReg,B.idComercio,C.Categoria,DATEPART(ISOWK,Fecha)) ;;
   drill_fields: [Producto]
 
   dimension: id {
@@ -129,5 +145,10 @@ dimension: Intercambio {
          WHEN ${TABLE}.TipReg = 'Z' THEN 'COMISIONES'
          ELSE ${TABLE}.TipReg -- en caso de que TipReg no sea C, A o B, asigna un valor de 0
        END ;;
+  }
+  dimension: clase {
+    type: string
+    sql: CASE
+    WHEN ${TipReg} = 'C' AND ${comercio.id_comercio} IS NOT NULL THEN ${catalogo_categoria_comercio.categoria} ELSE ${Cat} END;;
   }
 }
