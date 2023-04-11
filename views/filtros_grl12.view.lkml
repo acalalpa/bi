@@ -42,25 +42,23 @@ view: filtros_grl12 {
     type: string
     sql: ${TABLE}.Cuenta ;;
   }
+  dimension_group: fecha {
 
-  dimension: fecha {
-    type: string
-    sql: ${TABLE}.Fecha ;;
-  }
-
-  dimension: fecha_h {
-    type: string
-    sql: ${TABLE}.FechaH ;;
-  }
-  dimension_group: fechaf {
     type: time
     timeframes: [
+      raw,
+      time,
       date,
       week,
       month,
       quarter,
       year
     ]
+    sql: ${TABLE}.Fecha ;;
+   }
+
+   dimension: fecha_h {
+    type: string
     sql: ${TABLE}.FechaH ;;
   }
 
