@@ -11,6 +11,10 @@ view: pre_pay_studio_movements_v {
     type: string
     sql: ${TABLE}.NumCuenta ;;
   }
+  dimension: Importe {
+    type: number
+    sql: ${TABLE}.ImpTotal ;;
+  }
   dimension_group: fecha {
     type: time
     timeframes: [
