@@ -86,8 +86,9 @@ view: filtros_grl12 {
 
   dimension: procesador {
     type: string
-    sql: ${TABLE}.Procesador ;;
+    sql: UPPER(${TABLE}.Procesador) ;;
   }
+
 
   dimension: producto {
     type: string
