@@ -43,7 +43,6 @@ view: filtros_grl12 {
     sql: ${TABLE}.Cuenta ;;
   }
   dimension_group: fecha {
-
     type: time
     timeframes: [
       raw,
