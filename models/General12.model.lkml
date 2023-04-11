@@ -3,6 +3,7 @@ connection: "azuresqlbi"
 # include all the views
 include: "/views/**/*.view"
 include: "/views/pre_pay_studio_movements_v.view"
+include: "/views/filtros_grl12.view"
 
 datagroup: maquila_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -48,7 +49,12 @@ explore: catalogo_cuentas  {
   }
   join: pre_pay_studio_movements_v {
     type: left_outer
-    sql_on: ${catalogo_cuentas.cuenta} = ${pre_pay_studio_movements_v.num_cuenta} ;; # Reemplaza "cuenta" con el nombre de la columna que corresponda en tu vista
-    relationship: many_to_many # Ajusta el tipo de relación según tus necesidades
+    sql_on: ${catalogo_cuentas.cuenta} = ${pre_pay_studio_movements_v.num_cuenta} ;;
+    relationship: many_to_many
+  }
+  join: filtros_grl12 {
+    type: left_outer
+    sql_on: ${catalogo_cuentas.cuenta} = ${filtros_grl12.cuenta} ;;
+    relationship: many_to_many
   }
 }
