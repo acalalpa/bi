@@ -24,4 +24,14 @@ view: pre_pay_studio_movements_v {
     ]
     sql: ${TABLE}.Fecha ;;
   }
+  # Agrega una dimensión calculada para filtrar por año
+  dimension: fecha_2023 {
+    type: string
+    sql: |
+      CASE
+        WHEN date_part('year', ${TABLE}.Fecha) = 2023 THEN '2023'
+        ELSE NULL
+      END ;;
+    hidden: yes
   }
+}
