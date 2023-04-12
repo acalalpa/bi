@@ -42,21 +42,13 @@ view: filtros_grl12 {
     type: string
     sql: ${TABLE}.Cuenta ;;
   }
-  #dimension_group: fecha {
-  #  type: time
-  #  timeframes: [
-  #    raw,
-  #    time,
-  #    date,
-  #    week,
-  #    month,
-  #    quarter,
-  #    year
-  #  ]
-  #  sql: ${TABLE}.Fecha ;;
-  # }
 
-   dimension: fecha_h {
+  dimension: fecha {
+    type: string
+    sql: ${TABLE}.Fecha ;;
+  }
+
+  dimension: fecha_h {
     type: string
     sql: ${TABLE}.FechaH ;;
   }
@@ -83,9 +75,8 @@ view: filtros_grl12 {
 
   dimension: procesador {
     type: string
-    sql: UPPER(${TABLE}.Procesador) ;;
+    sql: ${TABLE}.Procesador ;;
   }
-
 
   dimension: producto {
     type: string
