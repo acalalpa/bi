@@ -92,9 +92,4 @@ view: filtros_grl12 {
     type: string
     sql: ${TABLE}.TipoMovimiento ;;
   }
-
-  measure: count {
-    type: count
-    drill_fields: [id]
-  }
 }
