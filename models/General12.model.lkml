@@ -52,10 +52,10 @@ explore: catalogo_cuentas  {
     sql_on: ${catalogo_cuentas.cuenta} = ${pre_pay_studio_movements_v.num_cuenta} ;;
     relationship: many_to_many
   }
-  join: filtros_grl12 {
-    type: left_outer
-    sql_on: ${catalogo_cuentas.cuenta} = ${filtros_grl12.cuenta} ;;
+  #join: filtros_grl12 {
+   # type: left_outer
+   # sql_on: ${catalogo_cuentas.cuenta} = ${filtros_grl12.cuenta} ;;
     ##sql_where: ${filtros_grl12.fecha_year} = '2023' ;;
-    relationship: many_to_many
-  }
+   # relationship: many_to_many
+ # }
 }
