@@ -42,19 +42,19 @@ view: filtros_grl12 {
     type: string
     sql: ${TABLE}.Cuenta ;;
   }
-  dimension_group: fecha {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.Fecha ;;
-   }
+  #dimension_group: fecha {
+  #  type: time
+  #  timeframes: [
+  #    raw,
+  #    time,
+  #    date,
+  #    week,
+  #    month,
+  #    quarter,
+  #    year
+  #  ]
+  #  sql: ${TABLE}.Fecha ;;
+  # }
 
    dimension: fecha_h {
     type: string
