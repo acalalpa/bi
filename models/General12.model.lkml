@@ -2,15 +2,16 @@ connection: "azuresqlbi"
 
 # include all the views
 include: "/views/**/*.view"
-include: "/views/pre_pay_studio_movements_v.view"
 include: "/views/filtros_grl12.view"
+include: "/views/pre_pay_studio_movements_v.view"
+
 
 datagroup: maquila_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   sql_trigger: "SELECT GETUTCDATE() as looker_trigger" # Runs every 6 hours
       persist_for: "6 hours" # Retains data for 6 hours before it is refreshed
       cache_time: "6 hours" # Caches data for 6 hours
-      # max_cache_age: "1 hour";;
+      # max_cache_age: "6 hour";;
 }
 
 persist_with: maquila_default_datagroup
