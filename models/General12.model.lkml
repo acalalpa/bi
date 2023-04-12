@@ -2,8 +2,6 @@ connection: "azuresqlbi"
 
 # include all the views
 include: "/views/**/*.view"
-include: "/views/filtros_grl12.view"
-#include: "/views/pre_pay_studio_movements_v.view"
 
 
 datagroup: maquila_default_datagroup {
