@@ -45,7 +45,7 @@ explore: catalogo_cuentas  {
   join: filtros_grl12 {
     type: left_outer
     sql_on: ${catalogo_cuentas.cuenta} = ${filtros_grl12.cuenta};;
-    relationship: many_to_one
+    relationship: one_to_many
   }
 #  join: catalogo_tipo_transaccion {
 #    type: left_outer
