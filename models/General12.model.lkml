@@ -2,7 +2,7 @@ connection: "azuresqlbi"
 
 # include all the views
 include: "/views/**/*.view"
-include: "/views/**/filtros_grl12.view"
+
 
 
 datagroup: maquila_default_datagroup {
@@ -40,11 +40,6 @@ explore: catalogo_cuentas  {
   join: catalogo_clasificacion_clientes {
     type: left_outer
     sql_on: ${catalogo_clasificacion_clientes.codigo} = ${clientes_broxel.clasificacion_ctes_broxel} ;;
-    relationship: one_to_many
-  }
-  join: filtros_grl12 {
-    type: left_outer
-    sql_on: ${catalogo_cuentas.cuenta} = ${filtros_grl12.cuenta};;
     relationship: one_to_many
   }
 #  join: catalogo_tipo_transaccion {
