@@ -324,9 +324,24 @@ view: catalogo_cuentas {
     sql: ${TABLE}.NivelCuenta ;;
   }
 
+  dimension: procesador_original {
+    type: string
+    sql: UPPER(${TABLE}.Procesador) ;;
+  }
   dimension: procesador {
     type: string
     sql: UPPER(${TABLE}.Procesador) ;;
+  }
+
+# Creamos una dimensión calculada para agrupar los valores de "Petrus" y "Paystudio" en "PayStudio"
+  dimension: procesador_agrupado {
+    type: string
+
+    # Utilizamos una dimensión calculada para aplicar la lógica de agrupamiento
+    sql: CASE
+          WHEN ${procesador} IN ('PETRUS', 'PAYSTUDIO') THEN 'PayStudio'
+          ELSE ${procesador}
+        END ;;
   }
 
   dimension: producto {
