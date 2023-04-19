@@ -67,7 +67,7 @@ END END)
 
   cache: {
   enabled: yes
-  refresh_interval: "1 hour" # Define el intervalo de caché en horas
+  refresh_interval: "1 hour"
 }
 
 ) ;;
