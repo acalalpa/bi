@@ -65,11 +65,12 @@ END END)
     --Fecha > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
       GROUP BY A.id,A.NumCuenta,CONVERT(DATE,A.Fecha),A.Producto,A.DenMov,A.TipoReg,B.idComercio,C.Categoria,DATEPART(ISOWK,Fecha)
 
-
   cache: {
-    enabled: yes
-    refresh_interval: "1 hour" # Define el intervalo de caché en horas
-  }) ;;
+  enabled: yes
+  refresh_interval: "1 hour" # Define el intervalo de caché en horas
+}
+
+) ;;
   drill_fields: [Producto]
 
 
