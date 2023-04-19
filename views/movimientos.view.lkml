@@ -64,12 +64,6 @@ END END)
       WHERE YEAR(Fecha) = '2023' --AND  MONTH(Fecha) = '2' AND DATEPART(ISOWK,Fecha) = '7'
     --Fecha > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
       GROUP BY A.id,A.NumCuenta,CONVERT(DATE,A.Fecha),A.Producto,A.DenMov,A.TipoReg,B.idComercio,C.Categoria,DATEPART(ISOWK,Fecha)
-
-  cache: {
-  enabled: yes
-  refresh_interval: "1 hour"
-}
-
 ) ;;
   drill_fields: [Producto]
 

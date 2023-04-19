@@ -42,9 +42,5 @@ explore: catalogo_cuentas  {
     sql_on: ${catalogo_clasificacion_clientes.codigo} = ${clientes_broxel.clasificacion_ctes_broxel} ;;
     relationship: one_to_many
   }
-#  join: catalogo_tipo_transaccion {
-#    type: left_outer
-#    sql_on: ${movimientos.CodTransac} = ${catalogo_tipo_transaccion.tipo_transaccion};;
-#    relationship: one_to_many
-#  }
+
 }
