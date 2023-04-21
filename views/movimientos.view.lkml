@@ -7,7 +7,7 @@ view: movimientos {
     SUM(A.ImpTotal) Importe,
     A.CodPtoCuota Producto,
     A.DenMov Categoria,
-    COUNT(1) Operaciones,
+    '1' Operaciones,
     SUM(case when A.CodMont!='484' then (A.TasaIntercambio*(A.importe_pesos/A.ImpTotal)) else A.TasaIntercambio end) Intercambio,
     CASE WHEN B.CategoriaTransaccion IS NOT NULL THEN UPPER(B.CategoriaTransaccion) ELSE CASE A.TipReg
             WHEN 'C'      THEN 'POS'
@@ -33,7 +33,7 @@ SELECT
     SUM(A.ImpTotalDEC) Importe,
     A.Producto,
     A.DenMov Categoria,
-    COUNT(1) Operaciones,
+    '1' Operaciones,
     SUM(A.ExchangeRateDEC) Intercambio
     ,UPPER(CASE
     WHEN B.idComercio IS NOT NULL AND  A.TipoReg='C' THEN C.Categoria
