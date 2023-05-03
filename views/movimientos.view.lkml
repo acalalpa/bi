@@ -49,8 +49,8 @@ SELECT
  FROM broxelpaymentsws.PrePayStudioMovements_v (NoLock) A
     LEFT JOIN broxelco_rdg.Comercio (NoLock) B ON A.DenMov = B.Comercio
     LEFT JOIN broxelco_rdg.CatalogoCategoriaComercio (NoLock) C ON B.Categoria = C.id
- WHERE YEAR(Fecha) = '2023'
-    AND  MONTH(Fecha) = '3'
+    --WHERE YEAR(Fecha) = '2023'
+    --AND  MONTH(Fecha) = '3'
     --AND DATEPART(ISOWK,Fecha) = '7'
       --Fecha > EOMONTH(DATEADD(MONTH, -6, GETDATE()))
  GROUP BY A.id,A.NumCuenta,CONVERT(DATE,A.Fecha),A.Producto,A.DenMov,A.TipoReg,B.idComercio,C.Categoria,DATEPART(ISOWK,Fecha)
