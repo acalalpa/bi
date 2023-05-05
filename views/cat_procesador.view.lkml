@@ -25,7 +25,7 @@
 # }
 view: cat_procesador {
   sql_table_name: dbo.Cat_Procesador ;;
-  drill_fields: [id]
+  drill_fields: [id,nombre]
 
   dimension: id {
     primary_key: yes

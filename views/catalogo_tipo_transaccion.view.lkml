@@ -1,5 +1,6 @@
 view: catalogo_tipo_transaccion {
   sql_table_name: broxelco_rdg.CatalogoTipoTransaccion ;;
+  drill_fields: [categoria_transaccion,codigo_transaccional,tipo_transaccion]
 
   dimension: categoria_transaccion {
     type: string
@@ -18,6 +19,6 @@ view: catalogo_tipo_transaccion {
 
   measure: count {
     type: count
-    drill_fields: []
+
   }
 }

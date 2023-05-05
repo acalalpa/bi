@@ -1,6 +1,6 @@
 view: catalogo_clientes_productos {
   sql_table_name: recursos.CatalogoClientesProductos ;;
-  drill_fields: [id]
+  drill_fields: [id,clabe,clasificacion,clave_cliente,codigo_producto,producto]
 
   dimension: id {
     primary_key: yes

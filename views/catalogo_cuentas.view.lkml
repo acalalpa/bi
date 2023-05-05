@@ -1,6 +1,6 @@
 view: catalogo_cuentas {
   sql_table_name: recursos.CatalogoCuentas ;;
-  drill_fields: [id]
+  drill_fields: [id,cliente,estado_operativo]
 
   dimension: id {
     primary_key: yes

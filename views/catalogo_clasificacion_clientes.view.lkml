@@ -1,5 +1,6 @@
 view: catalogo_clasificacion_clientes {
   sql_table_name: broxelco_rdg.CatalogoClasificacionClientes ;;
+  drill_fields: [clasificacion,codigo]
 
   dimension: clasificacion {
     type: string
@@ -13,6 +14,6 @@ view: catalogo_clasificacion_clientes {
 
   measure: count {
     type: count
-    drill_fields: []
+
   }
 }
