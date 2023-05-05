@@ -1,6 +1,6 @@
 view: productos_broxel {
   sql_table_name: broxelco_rdg.productos_broxel ;;
-  drill_fields: [id]
+  drill_fields: [id,Producto]
 
   dimension: id {
     primary_key: yes
@@ -182,4 +182,9 @@ view: productos_broxel {
     type: count
     drill_fields: [id]
   }
+  dimension: Producto {
+    type: string
+    sql: UPPER(${codigo} || '-' || ${descripcion_producto}) ;;
+  }
+
 }
