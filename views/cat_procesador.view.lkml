@@ -25,7 +25,7 @@
 # }
 view: cat_procesador {
   sql_table_name: dbo.Cat_Procesador ;;
-  #persistent: true # habilitar la caché en esta vista
+  drill_fields: [id]
 
   dimension: id {
     primary_key: yes
