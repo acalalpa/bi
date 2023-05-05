@@ -42,5 +42,10 @@ explore: catalogo_cuentas  {
     sql_on: ${catalogo_clasificacion_clientes.codigo} = ${clientes_broxel.clasificacion_ctes_broxel} ;;
     relationship: many_to_one
   }
+  join: productos_broxel {
+    type: left_outer
+    sql_on: ${productos_broxel.codigo} = ${movimientos.Producto} ;;
+    relationship: one_to_many
+  }
 
 }
