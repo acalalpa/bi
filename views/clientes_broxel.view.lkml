@@ -1,6 +1,6 @@
 view: clientes_broxel {
   sql_table_name: broxelco_rdg.ClientesBroxel ;;
-  drill_fields: [id]
+  drill_fields: [id,clave_cliente,razon_social]
 
   dimension: id {
     primary_key: yes
