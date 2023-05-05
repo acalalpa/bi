@@ -45,7 +45,7 @@ explore: catalogo_cuentas  {
   join: productos_broxel {
     type: left_outer
     sql_on: ${productos_broxel.codigo} = ${movimientos.Producto} ;;
-    relationship: one_to_many
+    relationship: many_to_one
   }
 
 }
