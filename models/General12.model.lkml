@@ -35,7 +35,7 @@ explore: catalogo_cuentas  {
     type: left_outer
     sql_on: ${catalogo_cuentas.cliente} = ${clientes_broxel.clave_cliente} ;;
     sql_where: ${clientes_broxel.clave_cliente} NOT IN ('17BRC02313', '20BRC0208', '17BRC02315', '18BRC00188', '17BRC02314') ;;
-    relationship: one_to_many
+    relationship: one_to_one
   }
   join: catalogo_clasificacion_clientes {
     type: left_outer
