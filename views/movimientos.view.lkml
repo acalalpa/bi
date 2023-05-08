@@ -84,7 +84,10 @@ dimension_group: Fecha {
   ]
   sql: ${TABLE}.Fclear ;;
 }
-
+  dimension: llave {
+    type: string
+    sql: CONCAT_WS('-',UPPER(${TABLE}.Cuenta),${Fecha_date}) ;;
+  }
   dimension: Mes {
     type: string
     sql: UPPER(TRANSLATE(FORMAT(${TABLE}.Fecha, 'MMMM', 'es-ES'), 'JANUARYFEBRUARYMARCHAPRILMAYJUNEJULYAUGUSTSEPTEMBEROCTOBERNOVEMBERDECEMBER', 'ENEROFEBREROMARZOABRILMAYOJUNIOJULIOAGOSTOSEPTIEMBREOCTUBRENOVIEMBREDICIEMBRE')) ;;
