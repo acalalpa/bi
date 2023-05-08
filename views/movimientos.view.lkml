@@ -82,7 +82,7 @@ dimension_group: Fecha {
     quarter,
     year
   ]
-  sql: ${TABLE}.Fclear ;;
+  sql: ${TABLE}.Fecha ;;
 }
   dimension: llave {
     type: string
