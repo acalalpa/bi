@@ -18,7 +18,7 @@ persist_with: maquila_default_datagroup
 explore: catalogo_cuentas  {
   join: movimientos {
     type: left_outer
-    sql_on: ${catalogo_cuentas.cuenta} = ${movimientos.Cuenta} ;;
+    sql_on: ${movimientos.Cuenta} = ${catalogo_cuentas.cuenta} ;;
     relationship: one_to_many
   }
   join: comercio {
@@ -32,7 +32,7 @@ explore: catalogo_cuentas  {
     relationship: many_to_one
   }
   join: clientes_broxel {
-    type: left_outer
+    type: inner
     sql_on: ${catalogo_cuentas.cliente} = ${clientes_broxel.clave_cliente} ;;
     sql_where: ${clientes_broxel.clave_cliente} NOT IN ('17BRC02313', '20BRC0208', '17BRC02315', '18BRC00188', '17BRC02314') ;;
     relationship: one_to_one
