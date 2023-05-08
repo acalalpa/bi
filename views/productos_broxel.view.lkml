@@ -184,7 +184,7 @@ view: productos_broxel {
   }
   dimension: Producto {
     type: string
-    sql: UPPER(${codigo}) ||'-'|| UPPER(${descripcion_producto}) ;;
+    sql: CONCAT(UPPER(${codigo}),UPPER(${descripcion_producto})) ;;
   }
 
 }
