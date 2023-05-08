@@ -47,5 +47,10 @@ explore: catalogo_cuentas  {
     sql_on: ${productos_broxel.codigo} = ${movimientos.Producto} ;;
     relationship: many_to_one
   }
+  join: filtros_grl12 {
+    type: left_outer
+    sql_on: ${movimientos.llave} = ${filtros_grl12.llave} ;;
+    relationship: many_to_many
+  }
 
 }
