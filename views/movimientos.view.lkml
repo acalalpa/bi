@@ -69,6 +69,8 @@ dimension: Cuenta {
   sql: ${TABLE}.Cuenta ;;
 }
 
+
+
 dimension_group: Fecha {
   type: time
   timeframes: [
@@ -80,7 +82,7 @@ dimension_group: Fecha {
     quarter,
     year
   ]
-  sql: ${TABLE}.Fecha ;;
+  sql: ${TABLE}.Fclear ;;
 }
 
   dimension: Mes {
