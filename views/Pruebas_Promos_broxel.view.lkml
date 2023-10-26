@@ -23,7 +23,6 @@ view: prueba_promos_broxel {
 
   dimension: num_cuenta {
     hidden: yes
-    primary_key: yes
     type: string
     sql: ${TABLE}.num_cuenta ;;
   }
@@ -51,6 +50,7 @@ view: prueba_promos_broxel {
   }
 
   dimension: clave_grupo_cliente {
+    primary_key: yes
     type: string
     sql: ${TABLE}.ClaveGrupoCliente ;;
   }

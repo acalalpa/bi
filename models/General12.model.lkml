@@ -55,4 +55,12 @@ explore: catalogo_cuentas  {
 
 }
 
-explore: prueba_promos_broxel {}
+explore: prueba_promos_broxel {
+  join: filtros_grl12 {
+    type: left_outer
+    sql_on: ${prueba_promos_broxel.clave_grupo_cliente} = ${filtros_grl12.clave_grupo_cliente} ;;
+    relationship: many_to_many
+  }
+
+
+}
