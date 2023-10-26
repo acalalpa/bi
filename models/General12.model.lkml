@@ -54,3 +54,5 @@ explore: catalogo_cuentas  {
   }
 
 }
+
+explore: prueba_promos_broxel {}
